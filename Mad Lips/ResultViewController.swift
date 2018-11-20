@@ -10,9 +10,16 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
+    var story: Story!
+    @IBOutlet weak var storyLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.hidesBackButton = true
+        
+        storyLabel.text = story.normalText
+        
         // Do any additional setup after loading the view.
     }
     

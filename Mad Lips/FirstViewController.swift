@@ -9,15 +9,19 @@
 import UIKit
 
 class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
-    @IBOutlet weak var picker: UIPickerView!
     
     var pickerData: [String] = []
     var selectedRow = 0
+
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var startButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+//        welcomeLabel.applyDesign()
+        startButton.applyDesign()
         
         picker.delegate = self
         picker.dataSource = self
@@ -51,25 +55,41 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         selectedRow = row
     }
     
-
-    
-    
     @IBAction func startButtonTapped(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "FirstSegue", sender: nil)
     }
     
     /// pass variable around in app
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let next = segue.destination as? SecondViewController
-        // create filename
-        if let next = next {
+        if let next = segue.destination as? UINavigationController,
+        let secondViewController = next.topViewController as? SecondViewController {
             let storyString = "madlib\(selectedRow)_\(pickerData[selectedRow].lowercased())"
-            next.storyString = storyString
+            secondViewController.storyString = storyString
+            secondViewController.titleName = pickerData[selectedRow]
         }
         
     }
     
+    @IBAction func unwindToQuizIntroduction(segue: UIStoryboardSegue) {
+        
+    }
     
     
 }
 
+extension UIButton {
+    func applyDesign() {
+        self.backgroundColor = UIColor.darkGray
+        self.layer.cornerRadius = self.frame.height / 2
+        self.setTitleColor(UIColor.white, for: .normal)
+    }
+}
+
+extension UILabel {
+    func applyDesign() {
+        self.backgroundColor = UIColor.darkGray
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 5
+        self.textColor = UIColor.white
+    }
+}
