@@ -77,6 +77,8 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
 }
 
+
+
 extension UIButton {
     func applyDesign() {
         self.backgroundColor = UIColor.darkGray
@@ -85,6 +87,7 @@ extension UIButton {
     }
 }
 
+// create
 extension UILabel {
     func applyDesign() {
         self.backgroundColor = UIColor.darkGray
