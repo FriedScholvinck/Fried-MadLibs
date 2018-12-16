@@ -4,4 +4,3 @@ Mad Lips is a game which asks the user to choose a story and fill in words to co
 ![home](doc/home.png)
 ![type](doc/type.png)
 ![result](doc/result.png)
-
