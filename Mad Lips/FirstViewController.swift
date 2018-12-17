@@ -71,13 +71,8 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func unwindToQuizIntroduction(segue: UIStoryboardSegue) {
-        
     }
-    
-    
 }
-
-
 
 extension UIButton {
     func applyDesign() {
@@ -87,7 +82,6 @@ extension UIButton {
     }
 }
 
-// create
 extension UILabel {
     func applyDesign() {
         self.backgroundColor = UIColor.darkGray

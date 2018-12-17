@@ -9,14 +9,11 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-    
-    // variables needed
     var storyString: String!
     var titleName: String!
     var story: Story!
     var progress: Float = 0
     
-    // create oulets
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var instructionLabel: UILabel!
@@ -24,8 +21,6 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // change navigation title and OK button
         self.navigationItem.title = titleName
         OKbutton.applyDesign()
         
@@ -37,26 +32,14 @@ class SecondViewController: UIViewController {
         story = Story(withText: text)
         
         instructionLabel.text = "Type a \(story.nextPlaceholder!)"
-//        textField.placeholder = story.nextPlaceholder
         progressView.setProgress(progress, animated: true)
-        
-        // Do any additional setup after loading the view.
     }
-    
 
-    ///
+    /// get filled in word
     @IBAction func okButtonTapped(_ sender: UIButton) {
-        
         let word = textField.text
         story.fillInPlaceholder(word: word!)
-        
         if story.isFilledIn {
-            
-//            // hide keyboard
-//            textField.resignFirstResponder()
-//
-//            instructionLabel.text = "You finished your story!"
-//
             performSegue(withIdentifier: "ResultsSegue", sender: nil)
         }
         else {
@@ -64,18 +47,12 @@ class SecondViewController: UIViewController {
         }
     }
     
-    ///
+    /// advance to next placeholder word, update interface
     func nextWord() {
-        
-        // empty text field for new word
         textField.text = ""
-        
         instructionLabel.text = "Type a \(story.nextPlaceholder!)"
-        //        textField.placeholder = story.nextPlaceholder
-        
         progress = Float(story.totalPlaceholders - story.remainingPlaceholders) / Float( story.totalPlaceholders)
         progressView.setProgress(progress, animated: true)
-        
     }
     
     /// pass variable around in app
@@ -83,7 +60,5 @@ class SecondViewController: UIViewController {
         if let next = segue.destination as? ResultViewController {
             next.story = story
         }
-        
     }
-    
 }
